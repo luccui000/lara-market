@@ -7,6 +7,7 @@ use App\Http\Resources\Api\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Spatie\QueryBuilder\QueryBuilder;
 
 
@@ -23,6 +24,6 @@ class IndexController extends Controller
         $product = QueryBuilder::for(
             Product::class
         );
-        return new JsonResponse(ProductResource::collection($product), 200);
+        return new JsonResponse(ProductResource::collection($product), Response::HTTP_OK);
     }
 }

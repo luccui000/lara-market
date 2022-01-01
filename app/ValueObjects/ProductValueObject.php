@@ -1,7 +1,7 @@
 <?php
 namespace App\ValueObjects;
 
-use App\Actions\Products\ValueObjectContract;
+use App\Contracts\ValueObjectContract;
 
 final class ProductValueObject implements ValueObjectContract
 {

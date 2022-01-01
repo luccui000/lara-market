@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Api\Products;
 
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,26 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required',
+                'string',
+                'min:10',
+                'max:100'
+            ],
+            'description' => [
+                'nullable',
+                'max:255'
+            ],
+            'thumbnail' => [
+                'nullable',
+                'string'
+            ],
+            'category_id' => Rule::in(
+                array_map(
+                    fn($category) => $category['id'],
+                    Category::select('id')->get()->toArray()
+                )
+            ),
         ];
     }
 }

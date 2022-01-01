@@ -7,23 +7,25 @@ use App\Http\Resources\Api\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Spatie\QueryBuilder\QueryBuilder;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class IndexController extends Controller
 {
     /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
     public function __invoke(Request $request): JsonResponse
     {
-        $product = QueryBuilder::for(
-            Product::class
+        $product = QueryBuilder::for(Product::class)
+            ->join('categories' , 'products.category_id', 'categories.id')
+            ->allowedFilters(['name', 'categories.name'])
+            ->paginate();
+        return new JsonResponse(
+            ProductResource::collection($product),
+            Response::HTTP_OK
         );
-        return new JsonResponse(ProductResource::collection($product), Response::HTTP_OK);
     }
 }

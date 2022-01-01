@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Products;
+namespace App\Contracts;
 
 interface ValueObjectContract
 {

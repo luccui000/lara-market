@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api;
 
+use Illuminate\Http\Request;
 use TiMacDonald\JsonApi\JsonApiResource;
 
 class ProductResource extends JsonApiResource
@@ -12,7 +13,7 @@ class ProductResource extends JsonApiResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function toAttributes($request): array
+    public function toAttributes(Request $request): array
     {
         return [
             'name' => $this->name,

@@ -2,7 +2,12 @@
 
 namespace App\Http\Requests\Api\Orders;
 
+use App\Enums\OrderStatus;
+use App\Enums\PaymentType;
+use App\Models\Order;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreRequest extends FormRequest
 {
@@ -24,7 +29,42 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'shipped_date' => [
+                'required'
+            ],
+            'payment_type' => [
+                'required',
+                new Enum(
+                    type: PaymentType::class
+                )
+            ],
+            'status' => [
+                'required',
+                new Enum(
+                    type: OrderStatus::class
+                )
+            ],
+            'total_discount' => [
+                'required',
+                'min:0'
+            ],
+            'total' => [
+                'required',
+                'min:0',
+            ],
+            'note' => [
+                'nullable'
+            ],
+            'created_by' => [
+                'nullable',
+                'int',
+                'exists:users,id'
+            ],
+            'customer_id' => [
+                'required',
+                'int',
+                'exists:customers,id'
+            ]
         ];
     }
 }

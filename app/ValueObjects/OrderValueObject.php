@@ -19,6 +19,9 @@ class OrderValueObject implements ValueObjectContract
     public function __construct(
         public string $shippedDate,
         public string $paymentType,
+        public string $paymentTransaction,
+        public string $paymentRef,
+        public string $paymentCode,
         public string $status,
         public float $totalDiscount,
         public float $total,
@@ -35,6 +38,9 @@ class OrderValueObject implements ValueObjectContract
         return [
             'shipped_date' => $this->shippedDate,
             'payment_type' => $this->paymentType,
+            'payment_transaction' => $this->paymentTransaction,
+            'payment_ref' => $this->paymentRef,
+            'payment_code' => $this->paymentCode,
             'status' => $this->status,
             'total_discount' => $this->totalDiscount,
             'total' => $this->total,

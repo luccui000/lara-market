@@ -2,10 +2,10 @@
 
 namespace App\Enums;
 
-enum OrderStatus: int
+enum OrderStatus: string
 {
-    case PREORDER = 1;
-    case CONFIRM = 2;
-    case SHIPPING = 3;
-    case FINISHED = 4;
+    case WAIT_FOR_CONFIRMATION = "wait for confirmation";
+    case CONFIRMED = "confirmed";
+    case SHIPPING = "shipping";
+    case FINISHED = "finished";
 }

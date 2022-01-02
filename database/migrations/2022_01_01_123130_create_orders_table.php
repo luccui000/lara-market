@@ -17,10 +17,13 @@ return new class extends Migration
             $table->id();
             $table->dateTime('shipped_date');
             $table->string('payment_type', 50);
-            $table->tinyInteger('status');
+            $table->string('payment_transaction', 50);
+            $table->string('payment_ref', 50);
+            $table->string('payment_code', 50);
+            $table->string('status', 30);
             $table->double('total_discount')->default(0);
             $table->double('total');
-            $table->mediumText('note')->nullable();
+            $table->string('note', 100)->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->foreignId('customer_id')->index()->constrained('customers')->cascadeOnDelete();
             $table->timestamps();

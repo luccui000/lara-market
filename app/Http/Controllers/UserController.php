@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Api\UserResource;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    public function me(Request $request)
+    {
+        return new JsonResponse(
+            data: UserResource::make($request->user()),
+            status: Response::HTTP_OK
+        );
+    }
     /**
      * Display a listing of the resource.
      *

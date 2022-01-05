@@ -20,9 +20,9 @@ class IndexController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         $product = QueryBuilder::for(Product::class)
-            ->join('categories' , 'products.category_id', 'categories.id')
+            ->with('category')
             ->allowedFilters(['name', 'categories.name'])
-            ->paginate();
+            ->get();
         return new JsonResponse(
             ProductResource::collection($product),
             Response::HTTP_OK

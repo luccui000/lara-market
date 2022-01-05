@@ -15,7 +15,8 @@ final class ProductValueObject implements ValueObjectContract
         public string $name,
         public null|string $description,
         public null|string $thumbnail,
-        public int $categoryId
+        public int $categoryId,
+        public int $sellerId
     ) {
     }
 
@@ -29,6 +30,7 @@ final class ProductValueObject implements ValueObjectContract
             'description' => $this->description,
             'thumbnail' => $this->thumbnail,
             'category_id' => $this->categoryId,
+            'seller_id' => $this->sellerId,
         ];
     }
 }

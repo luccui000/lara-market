@@ -16,7 +16,8 @@ final class ProductFactory
             name: strval(data_get($attributes, 'name')),
             description: strval(data_get($attributes, 'description')),
             thumbnail: strval(data_get($attributes, 'thumbnail')),
-            categoryId: strval(data_get($attributes, 'category_id')),
+            categoryId: data_get($attributes, 'category_id'),
+            sellerId: data_get($attributes, 'seller_id'),
         );
     }
 }

@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Api\Products;
+namespace App\Http\Requests\Api\Auth;
 
-use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -29,17 +27,17 @@ class StoreRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
-                'min:10',
-                'max:200'
+                'max:100'
             ],
-            'description' => [
-                'nullable',
+            'email' => [
+                'required',
+                'email:rfc,dns'
             ],
-            'thumbnail' => [
-                'nullable',
-                'string'
-            ],
-            'category_id' => 'exists:categories,id',
+            'password' => [
+                'required',
+                'min:6',
+                'max:100'
+            ]
         ];
     }
 }

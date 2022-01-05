@@ -19,7 +19,12 @@ class ProductResource extends JsonApiResource
             'name' => $this->name,
             'description' => $this->description,
             'thumbnail' => $this->thumbnail,
-            'category_id' => $this->category_id,
+            'category' => $this->category,
+            'seller' => [
+                'name' => $this->seller?->name,
+                'email' => $this->seller?->email,
+                'address' => $this->seller?->address,
+            ],
         ];
     }
 }

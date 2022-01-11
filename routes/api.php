@@ -17,6 +17,9 @@ use App\Http\Controllers\Api\Sellers\{
 use App\Http\Controllers\Api\Orders\{
     IndexController as OrderIndexController
 };
+use App\Http\Controllers\Api\Crawler\{
+    IndexController as CrawlerIndexController
+};
 
 Route::group(['prefix' => 'sellers', 'as' => 'sellers.'], function () {
     Route::get('/', SellerIndexController::class)->name('index');
@@ -29,6 +32,9 @@ Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
 });
 Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
     Route::get('/', OrderIndexController::class)->name('index');
+});
+Route::group(['prefix' => 'crawlers', 'as' => 'crawlers.'], function () {
+    Route::post('/', CrawlerIndexController::class)->name('store');
 });
 
 Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
